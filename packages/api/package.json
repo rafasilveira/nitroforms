@@ -1,15 +1,17 @@
 {
-  "name": "nitroforms-backend",
+  "name": "@nitroforms/backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "author": "Rafael Bourscheid da Silveira",
+  "type": "module",
   "scripts": {
     "start": "nodemon ./src/index.ts",
     "test:lint": "yarn eslint src/ --ext .ts",
     "code-style": "yarn prettier --write src/"
   },
   "dependencies": {
+    "@nitroforms/eslint-config": "1.0.0",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
@@ -21,12 +23,6 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.23",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
-    "@typescript-eslint/parser": "^5.18.0",
-    "eslint": "^8.13.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
     "ts-node": "^10.7.0",
