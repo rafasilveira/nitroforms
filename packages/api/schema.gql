@@ -3,14 +3,31 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-type Hello {
-  greeted: String
+type Form {
+  createdAt: String
+  id: ID
+  name: String
+  submissions: [FormSubmission]
+  teamId: String
+  updatedAt: String
 }
 
-input HelloFilter {
-  name: String
+input FormFilter {
+  id: String
+  teamId: String
+}
+
+type FormItem {
+  key: String
+  value: String
+}
+
+type FormSubmission {
+  createdAt: String
+  data: [FormItem]
+  id: ID
 }
 
 type Query {
-  Hello(filter: HelloFilter): Hello
+  getFormSubmissions(filter: FormFilter): [Form]
 }
