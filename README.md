@@ -11,10 +11,12 @@ Node, Express, Typescript, Express-Graphql, Type-Graphql
 ### Backlog
 
 - [x] Project configuration
-- [ ] Database connection
-- [ ] Form data modeling
+- [x] Database connection
+- [x] Form data modeling
+- [x] Form CRUD
+- [ ] User CRUD
+- [ ] Team and Project CRUD
 - [ ] Authentication
-- [ ] User/project handling
 
 ### Running locally
 
@@ -30,18 +32,17 @@ Then, copy `.env.example` and rename it to `.env`. So far, there is no need to f
 
 After that, run the project with `yarn start` and go to [localhost:4000/graphql](localhost:4000/graphql) on your browser.
 
-### Queries
+### Available functionalities
 
+#### Queries
+**Get form by id**
+Gets a form by its id
 ```gql
 query {
-  getFormSubmissions(
-    filter: {
-      id: "123456789123456789123456"
-      teamId: "123456789123456789123456"
-    }
-  ) {
+  form(id:"6258b278fa3091f0a068af5f")
+  {
     name
-    id
+    _id
     teamId
     createdAt
     updatedAt
@@ -54,6 +55,41 @@ query {
       }
     }
   }
+}
+```
+
+**Get all forms by filter**
+Gets all forms for the selected team or project. As of right now, there's only one team and only one project, so this filter doesn't do much.
+
+```gql
+query {
+  getAllForms (
+    filter: { teamId: "6254c3bcdd4cc9d95413621f" }
+  ) {
+    name
+    _id
+    teamId
+    createdAt
+    updatedAt
+    submissions {
+      id
+      createdAt
+      data {
+        key
+        value
+      }
+    }
+  }
+}
+```
+
+#### Mutations
+
+**Create new form**
+Creates a new form and returns its id. In the future, it'll be required to provide a team id and a project id.
+```gql
+mutation {
+  newForm (name: "Form teste 01")
 }
 ```
 

@@ -4,17 +4,18 @@
 # -----------------------------------------------
 
 type Form {
+  _id: ID
   createdAt: String
-  id: ID
   name: String
+  projectId: String
   submissions: [FormSubmission]
   teamId: String
   updatedAt: String
 }
 
-input FormFilter {
-  id: String
-  teamId: String
+input FormFilterInput {
+  projectId: ID
+  teamId: ID
 }
 
 type FormItem {
@@ -28,6 +29,11 @@ type FormSubmission {
   id: ID
 }
 
+type Mutation {
+  newForm(name: String): String
+}
+
 type Query {
-  getFormSubmissions(filter: FormFilter): [Form]
+  form(id: String): Form
+  getAllForms(filter: FormFilterInput): [Form]
 }

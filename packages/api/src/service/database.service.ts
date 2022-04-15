@@ -3,7 +3,7 @@ import mongodb, { Collection, Db, MongoClient } from 'mongodb'
 import dotenv from 'dotenv'
 
 // Global Variables
-export const collections: { forms?: Collection } = {}
+export const collections: { forms?: Collection; projects?: Collection } = {}
 
 // Initialize Connection
 export async function connectToDatabase() {
@@ -21,13 +21,8 @@ export async function connectToDatabase() {
 
   const db: Db = client.db(process.env.DB_NAME)
 
-  const formsCollection: Collection = db.collection(
-    process.env.FORMS_COLLECTION_NAME || 'forms'
-  )
+  collections.forms = db.collection('forms')
+  collections.projects = db.collection('projects')
 
-  collections.forms = formsCollection
-
-  console.log(
-    `Successfully connected to database: ${db.databaseName} and collection: ${formsCollection.collectionName}`
-  )
+  console.log(`Successfully connected to database: ${db.databaseName}`)
 }

@@ -24,10 +24,13 @@ class FormSubmission {
 @ObjectType()
 export class Form {
   @Field(() => ID)
-  id: string
+  _id: string
 
   @Field()
   teamId: string
+
+  @Field()
+  projectId: string
 
   @Field()
   name: string
@@ -43,10 +46,22 @@ export class Form {
 }
 
 @InputType()
-export class FormFilter {
-  @Field()
-  id?: string
+export class FormFilterInput {
+  @Field(() => ID)
+  teamId?: string
+
+  @Field(() => ID)
+  projectId?: string
+}
+
+@InputType()
+export class NewFormInput {
+  @Field(() => ID)
+  teamId: string
+
+  @Field(() => ID)
+  projectId: string
 
   @Field()
-  teamId?: string
+  name: string
 }
